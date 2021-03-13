@@ -34,6 +34,14 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+  if (req.params.authors) {
+    // not working, need to debug
+    Marq.findByAuthors(req.params.author, (err, data) => {
+      res.send(data);
+    });
+    return;
+  }
+
   Marq.getAll((err, data) => {
     if (err)
       res.status(500).send({

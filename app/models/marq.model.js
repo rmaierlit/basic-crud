@@ -39,6 +39,12 @@ Marq.findById = (uuid, result) => {
   });
 };
 
+Marq.findByAuthors = (authors, result) => {
+  sql.query(`Select * FROM marqs WHERE author IN (${authors.join(', ')})`, (err, res) => {
+    result(null, res);
+  })
+}
+
 Marq.getAll = result => {
   sql.query("SELECT * FROM marqs", (err, res) => {
     if (err) {
