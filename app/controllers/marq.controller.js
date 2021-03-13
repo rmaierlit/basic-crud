@@ -32,3 +32,14 @@ exports.create = (req, res) => {
         else res.send(data);
       });
 };
+
+exports.findAll = (req, res) => {
+  Marq.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving marqs."
+      });
+    else res.send(data);
+  });
+}
